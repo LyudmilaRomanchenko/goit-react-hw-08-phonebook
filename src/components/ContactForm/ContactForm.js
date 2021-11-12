@@ -5,6 +5,9 @@ import PropTypes from "prop-types";
 // import actions from "../../redux/contacts/contacts-actions";
 // import { getContacts } from "../../redux/contacts/contacts-selectors";
 import { contactsOperations, contactsSelectors } from "../../redux/contacts";
+// Библиотека стилей
+import Button from "@mui/material/Button";
+// import Button from "./Button";
 
 function ContactForm() {
   const contacts = useSelector(contactsSelectors.getContacts);
@@ -74,6 +77,9 @@ function ContactForm() {
       <button className={s.button} type="submit">
         Add contact
       </button>
+
+      {/* <Button /> */}
+      <Button variant="contained">Contained</Button>
     </form>
   );
 }

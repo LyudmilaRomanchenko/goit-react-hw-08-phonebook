@@ -4,53 +4,46 @@ import s from "./RegisterForm.module.css";
 import PropTypes from "prop-types";
 // import actions from "../../redux/contacts/contacts-actions";
 // import { getContacts } from "../../redux/contacts/contacts-selectors";
-import { contactsOperations, contactsSelectors } from "../../redux/contacts";
+import { authOperations } from "../../redux/auth";
 
 function RegisterForm() {
-  // const contacts = useSelector(contactsSelectors.getContacts);
-  // const dispatch = useDispatch();
-  // const addContact = (name, number) =>
-  //   dispatch(contactsOperations.addContact(name, number));
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
 
-  // const [name, setName] = useState("");
-  // const [number, setNumber] = useState("");
+  const handleChange = ({ target: { name, value } }) => {
+    switch (name) {
+      case "name":
+        return setName(value);
+      case "email":
+        return setEmail(value);
+      case "password":
+        return setPassword(value);
+      default:
+        return;
+    }
+  };
 
-  // const handleChange = (e) => {
-  //   if (e.currentTarget.name === "name") {
-  //     setName(e.currentTarget.value);
-  //   }
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-  //   if (e.currentTarget.name === "number") {
-  //     setNumber(e.currentTarget.value);
-  //   }
-  // };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-
-  //   const isContactsIncludes = contacts.find(
-  //     (contact) => contact.name === name
-  //   );
-
-  //   if (isContactsIncludes) {
-  //     return alert(`${name} is alredy in contacts`);
-  //   } else {
-  //     addContact(name, number);
-  //     setName("");
-  //     setNumber("");
-  //   }
-  // };
+    dispatch(authOperations.register({ name, email, password }));
+    setName("");
+    setEmail("");
+    setPassword("");
+  };
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <label className={s.lableContact}>
         Name
         <input
           className={s.inputContact}
           type="text"
           name="name"
-          // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          // title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
+          value={name}
+          onChange={handleChange}
           required
         />
       </label>
@@ -61,10 +54,8 @@ function RegisterForm() {
           className={s.inputContact}
           type="email"
           name="email"
-          // value={number}
-          // onChange={handleChange}
-          // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          // title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
+          value={email}
+          onChange={handleChange}
           required
         />
       </label>
@@ -75,10 +66,8 @@ function RegisterForm() {
           className={s.inputContact}
           type="password"
           name="password"
-          // value={number}
-          // onChange={handleChange}
-          // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          // title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
+          value={password}
+          onChange={handleChange}
           required
         />
       </label>
