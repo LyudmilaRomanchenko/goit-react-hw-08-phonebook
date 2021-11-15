@@ -7,7 +7,17 @@ import PropTypes from "prop-types";
 import { contactsOperations, contactsSelectors } from "../../redux/contacts";
 // Библиотека стилей
 import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
 // import Button from "./Button";
+import { ThemeProvider, createTheme } from "@mui/system";
+
+const theme = createTheme({
+  palette: {
+    background: {
+      paper: "#009688",
+    },
+  },
+});
 
 function ContactForm() {
   const contacts = useSelector(contactsSelectors.getContacts);
@@ -74,12 +84,38 @@ function ContactForm() {
         />
       </label>
 
-      <button className={s.button} type="submit">
+      <TextField
+        id="outlined-multiline-flexible"
+        label="Name"
+        multiline
+        maxRows={4}
+        color={"secondary"}
+        size="small"
+        ////////
+        type="text"
+        name="name"
+        value={name}
+        ////////
+        onChange={handleChange}
+      />
+
+      {/* <button className={s.button} type="submit">
         Add contact
-      </button>
+      </button> */}
 
       {/* <Button /> */}
-      <Button variant="contained">Contained</Button>
+      {/* <ThemeProvider theme={theme}> */}
+      <Button
+        className={s.button}
+        variant="contained"
+        // color="secondary"
+        size="small"
+        // sx={{ bgcolor: "background.paper" }}
+        sx={{ bgcolor: "#009688" }}
+      >
+        Add contact
+      </Button>
+      {/* </ThemeProvider> */}
     </form>
   );
 }
