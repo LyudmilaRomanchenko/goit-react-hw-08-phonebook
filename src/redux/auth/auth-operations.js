@@ -53,19 +53,45 @@ const fetchCurrentUser = createAsyncThunk(
   "auth/refresh",
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
-    const persustedToken = state.auth.token;
-    console.log(persustedToken);
-    if (persustedToken === null) {
-      return;
+    const persistedToken = state.auth.token;
+    console.log(persistedToken);
+    if (persistedToken === null) {
+      return thunkAPI.rejectWithValue();
     }
 
-    token.set(persustedToken);
+    token.set(persistedToken);
 
-    const response = axios.get(
-      "https://connections-api.herokuapp.com/users/current"
-    );
+    try {
+      const { data } = await axios.get(
+        "https://connections-api.herokuapp.com/users/current"
+      );
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
   }
 );
+
+// const fetchCurrentUser = createAsyncThunk(
+//   "auth/refresh",
+//   async (_, thunkAPI) => {
+//     const state = thunkAPI.getState();
+//     const persistedToken = state.auth.token;
+
+//     if (persistedToken === null) {
+//       console.log("Токена нет, уходим из fetchCurrentUser");
+//       return thunkAPI.rejectWithValue();
+//     }
+
+//     token.set(persistedToken);
+//     try {
+//       const { data } = await axios.get("/users/current");
+//       return data;
+//     } catch (error) {
+//       // TODO: Добавить обработку ошибки error.message
+//     }
+//   }
+// );
 
 const operations = {
   register,
