@@ -1,6 +1,7 @@
 // import "./App.css";
 // import contacts from "./contacts.json";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Routes, Route, Link } from "react-router-dom";
 // import ContactList from "./ContactList";
 // import ContactForm from "./ContactForm";
@@ -10,6 +11,7 @@ import AppBar from "./AppBar";
 import Contacts from "../views/Сontacts";
 import RegisterForm from "../views/RegisterForm";
 import LoginForm from "../views/LoginForm";
+import { authOperations } from "../redux/auth";
 
 // Добавить ленивую загрузку ///////////////////////////////////////////
 const HomePage = lazy(() => import("../views/HomePage"));
@@ -17,6 +19,10 @@ const HomePage = lazy(() => import("../views/HomePage"));
 // const MovieDetailsPage = lazy(() => import("./views/MovieDetailsPage"));
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(authOperations.fetchCurrentUser());
+  }, [dispatch]);
   return (
     <div>
       <AppBar />

@@ -56,7 +56,7 @@ function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit}>
-      {/* <label className={s.lableContact}>
+      <label className={s.lableContact}>
         Name
         <input
           className={s.inputContact}
@@ -82,9 +82,9 @@ function ContactForm() {
           title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
           required
         />
-      </label> */}
+      </label>
 
-      <TextField
+      {/* <TextField
         id="outlined-multiline-flexible"
         label="Name"
         multiline
@@ -95,6 +95,9 @@ function ContactForm() {
         type="text"
         name="name"
         value={name}
+        pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+        title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
+        required
         ////////
         onChange={handleChange}
       />
@@ -110,9 +113,12 @@ function ContactForm() {
         type="tel"
         name="number"
         value={number}
+        pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+        title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
+        required
         ////////
         onChange={handleChange}
-      />
+      /> */}
 
       {/* <button className={s.button} type="submit">
         Add contact
@@ -121,6 +127,8 @@ function ContactForm() {
       {/* <Button /> */}
       {/* <ThemeProvider theme={theme}> */}
       <Button
+        onClick={handleSubmit}
+        type="submit"
         className={s.button}
         variant="contained"
         // color="secondary"

@@ -11,9 +11,9 @@ export default function Appbar() {
   return (
     <header className={styles.header}>
       <Navigation />
-      {/* {isLoggedIn ? <UserMemu /> : <AuthNav />} */}
-      <UserMemu />
-      <AuthNav />
+      {isLoggedIn ? <UserMemu /> : <AuthNav />}
+      {/* <UserMemu />
+      <AuthNav /> */}
     </header>
   );
 }

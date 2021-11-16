@@ -1,60 +1,77 @@
-/* eslint-disable import/no-anonymous-default-export */
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 // axios.defaults.baseURL = "https://connections-api.herokuapp.com";
-// axios.defaults.baseURL = "https://connections-api.herokuapp.com";
+axios.defaults.baseURL = "https://connections-api.herokuapp.com";
+
+const token = {
+  set(token) {
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+  },
+  unset() {
+    axios.defaults.headers.common.Authorization = "";
+  },
+};
 
 const register = createAsyncThunk("auth/register", async (credentials) => {
-  // "https://connections-api.herokuapp.com/users/signup"
   try {
     const { data } = await axios.post(
       "https://connections-api.herokuapp.com/users/signup",
       credentials
     );
-    console.log(data);
+    // console.log("hhhh", data);
+    token.set(data.token);
     return data;
   } catch (error) {
     console.log(error);
   }
-
-  // try {
-  //   const { data } = await axios.get(
-  //     "https://api.themoviedb.org/3/trending/all/day?api_key=cdc3559cea174c9b75b98956c9a389b5"
-  //   );
-  //   console.log("gggggggg", data);
-  //   return data;
-  // } catch (error) {
-  //   console.log(error);
-  // }
-
-  // fetch("https://connections-api.herokuapp.com/users/signup", credentials)
-  //   .then((response) => {
-  //     response.json();
-  //   })
-  //   .then((data) => {
-  //     console.log(data);
-  //     return data;
-  //   });
 });
 
-const login = createAsyncThunk("auth/login", async (credentials) => {
+const logIn = createAsyncThunk("auth/login", async (credentials) => {
   try {
     const { data } = await axios.post(
       "https://connections-api.herokuapp.com/users/login",
       credentials
     );
+    token.set(data.token);
     return data;
   } catch (error) {
     console.log(error);
   }
 });
 
+const logOut = createAsyncThunk("auth/logout", async () => {
+  try {
+    await axios.post("https://connections-api.herokuapp.com/users/logout");
+    token.unset();
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+const fetchCurrentUser = createAsyncThunk(
+  "auth/refresh",
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persustedToken = state.auth.token;
+    console.log(persustedToken);
+    if (persustedToken === null) {
+      return;
+    }
+
+    token.set(persustedToken);
+
+    const response = axios.get(
+      "https://connections-api.herokuapp.com/users/current"
+    );
+  }
+);
+
 const operations = {
   register,
-  // logOut,
-  login,
-  // fetchCurrentUser,
+  logOut,
+  logIn,
+  fetchCurrentUser,
 };
 export default operations;
 

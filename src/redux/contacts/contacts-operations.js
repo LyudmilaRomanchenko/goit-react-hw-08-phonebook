@@ -12,7 +12,7 @@ import {
   fetchContactsError,
 } from "./contacts-actions";
 
-axios.defaults.baseURL = "http://localhost:4040";
+axios.defaults.baseURL = "https://connections-api.herokuapp.com";
 
 export const fetchContacts = () => async (dispatch) => {
   dispatch(fetchContactsRequest());
@@ -39,11 +39,6 @@ export const addContact = (name, number) => async (dispatch) => {
   } catch (error) {
     dispatch(addContactsError(error));
   }
-
-  //   axios
-  //     .post("/contacts", contact)
-  //     .then(({ data }) => dispatch(addContactsSuccsess(data)))
-  //     .catch((error) => dispatch(addContactsError(error)));
 };
 
 export const deleteContact = (contactId) => async (dispatch) => {
