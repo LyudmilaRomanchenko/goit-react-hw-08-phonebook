@@ -11,6 +11,10 @@ import {
 } from "redux-persist";
 import logger from "redux-logger";
 import contacts from "./contacts/contacts-reducer";
+import { authReducer } from "./auth";
+
+console.log(authReducer);
+console.log(contacts);
 
 const myMiddleWare = (store) => (next) => (action) => {
   console.log("Моя прослойка", action);
@@ -30,6 +34,7 @@ const middleware = [
 
 const store = configureStore({
   reducer: {
+    auth: authReducer,
     contacts: contacts,
   },
   middleware,

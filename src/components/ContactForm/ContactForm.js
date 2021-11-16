@@ -56,7 +56,7 @@ function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label className={s.lableContact}>
+      {/* <label className={s.lableContact}>
         Name
         <input
           className={s.inputContact}
@@ -82,7 +82,7 @@ function ContactForm() {
           title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
           required
         />
-      </label>
+      </label> */}
 
       <TextField
         id="outlined-multiline-flexible"
@@ -95,6 +95,21 @@ function ContactForm() {
         type="text"
         name="name"
         value={name}
+        ////////
+        onChange={handleChange}
+      />
+
+      <TextField
+        id="outlined-multiline-flexible"
+        label="Number"
+        multiline
+        maxRows={4}
+        color={"secondary"}
+        size="small"
+        ////////
+        type="tel"
+        name="number"
+        value={number}
         ////////
         onChange={handleChange}
       />

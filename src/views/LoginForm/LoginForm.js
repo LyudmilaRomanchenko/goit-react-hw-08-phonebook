@@ -2,78 +2,94 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import s from "./LoginForm.module.css";
 import PropTypes from "prop-types";
-// import actions from "../../redux/contacts/contacts-actions";
-// import { getContacts } from "../../redux/contacts/contacts-selectors";
-import { contactsOperations, contactsSelectors } from "../../redux/contacts";
+import { authOperations } from "../../redux/auth";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
 
 function LoginForm() {
-  // const contacts = useSelector(contactsSelectors.getContacts);
-  // const dispatch = useDispatch();
-  // const addContact = (name, number) =>
-  //   dispatch(contactsOperations.addContact(name, number));
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
 
-  // const [name, setName] = useState("");
-  // const [number, setNumber] = useState("");
+  const handleChange = ({ target: { name, value } }) => {
+    switch (name) {
+      case "email":
+        return setEmail(value);
+      case "password":
+        return setPassword(value);
+      default:
+        return;
+    }
+  };
 
-  // const handleChange = (e) => {
-  //   if (e.currentTarget.name === "name") {
-  //     setName(e.currentTarget.value);
-  //   }
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-  //   if (e.currentTarget.name === "number") {
-  //     setNumber(e.currentTarget.value);
-  //   }
-  // };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-
-  //   const isContactsIncludes = contacts.find(
-  //     (contact) => contact.name === name
-  //   );
-
-  //   if (isContactsIncludes) {
-  //     return alert(`${name} is alredy in contacts`);
-  //   } else {
-  //     addContact(name, number);
-  //     setName("");
-  //     setNumber("");
-  //   }
-  // };
-
+    dispatch(authOperations.login({ email, password }));
+    setEmail("");
+    setPassword("");
+  };
   return (
-    <form>
-      <label className={s.lableContact}>
-        Email
-        <input
-          className={s.inputContact}
-          type="email"
-          name="email"
-          // value={number}
-          // onChange={handleChange}
-          // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          // title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
-          required
-        />
-      </label>
+    <form onSubmit={handleSubmit}>
+      <TextField
+        id="outlined-multiline-flexible"
+        label="Email"
+        multiline
+        maxRows={4}
+        color={"secondary"}
+        size="small"
+        ////////
+        type="email"
+        name="email"
+        value={email}
+        ////////
+        onChange={handleChange}
+      />
 
-      <label className={s.lableContact}>
-        Password
-        <input
-          className={s.inputContact}
-          type="password"
-          name="password"
-          // value={number}
-          // onChange={handleChange}
-          // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          // title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
-          required
-        />
-      </label>
+      <TextField
+        id="outlined-multiline-flexible"
+        label="Password"
+        multiline
+        maxRows={4}
+        // color={"secondary"}
+        size="small"
+        ////////
+        type="password"
+        name="password"
+        value={password}
+        ////////
+        // sx={{
+        //   ":focus": {
+        //     color: "#009665",
+        //   },
+        // }}
+        // className={classes}
+        onChange={handleChange}
+      />
 
-      <button className={s.button} type="submit">
+      <Button
+        type="submit"
+        onClick={handleSubmit}
+        className={s.button}
+        variant="contained"
+        // color="secondary"
+        size="small"
+        // sx={{ bgcolor: "background.paper" }}
+        // sx={{ bgcolor: "#009688" }}
+        sx={{
+          // some styles
+          bgcolor: "#009688",
+          ":hover": {
+            bgcolor: "#009665",
+          },
+        }}
+      >
         Log in
-      </button>
+      </Button>
+
+      {/* <button className={s.button} type="submit">
+        Log in
+      </button> */}
     </form>
   );
 }

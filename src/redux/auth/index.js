@@ -1,2 +1,3 @@
-export * as authOperations from "./auth-operations";
-// export * as contactsSelectors from "./contacts-selectors";
+export { default as authOperations } from "./auth-operations";
+export { default as authReducer } from "./auth-slice";
+export { default as authSelectors } from "./auth-selector";

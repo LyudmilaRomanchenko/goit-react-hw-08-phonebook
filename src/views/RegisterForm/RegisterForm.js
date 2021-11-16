@@ -5,8 +5,29 @@ import PropTypes from "prop-types";
 // import actions from "../../redux/contacts/contacts-actions";
 // import { getContacts } from "../../redux/contacts/contacts-selectors";
 import { authOperations } from "../../redux/auth";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+// import { ThemeProvider, createTheme } from "@mui/system";
+// import { useFormControl } from "@mui/material/FormControl";
+///////////////////////////////////////////////////////////////////////////////////////
+import { makeStyles } from "@mui/styles";
+
+console.log(authOperations.register);
+
+const useStyles = makeStyles({
+  ":focus": {
+    borderColor: "#009665",
+  },
+
+  color: "white",
+  height: 48,
+  padding: "0 30px",
+});
+///////////////////////////////////////////////////////////////////////////////////////
 
 function RegisterForm() {
+  const classes = useStyles();
+  /////////
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -71,10 +92,81 @@ function RegisterForm() {
           required
         />
       </label>
+      {/* 
+      <TextField
+        id="outlined-multiline-flexible"
+        label="Name"
+        multiline
+        maxRows={4}
+        color={"secondary"}
+        size="small"
+        ////////
+        type="text"
+        name="name"
+        value={name}
+        ////////
+        onChange={handleChange}
+      />
+
+      <TextField
+        id="outlined-multiline-flexible"
+        label="Email"
+        multiline
+        maxRows={4}
+        color={"secondary"}
+        size="small"
+        ////////
+        type="email"
+        name="email"
+        value={email}
+        ////////
+        onChange={handleChange}
+      />
+
+      <TextField
+        id="outlined-multiline-flexible"
+        label="Password"
+        multiline
+        maxRows={4}
+        // color={"secondary"}
+        size="small"
+        ////////
+        type="password"
+        name="password"
+        value={password}
+        ////////
+        // sx={{
+        //   ":focus": {
+        //     color: "#009665",
+        //   },
+        // }}
+        className={classes}
+        onChange={handleChange}
+      /> */}
 
       <button className={s.button} type="submit">
         Register
       </button>
+
+      {/* <Button
+        type="submit"
+        onClick={handleSubmit}
+        className={s.button}
+        variant="contained"
+        // color="secondary"
+        size="small"
+        // sx={{ bgcolor: "background.paper" }}
+        // sx={{ bgcolor: "#009688" }}
+        sx={{
+          // some styles
+          bgcolor: "#009688",
+          ":hover": {
+            bgcolor: "#009665",
+          },
+        }} 
+      >
+        Register
+      </Button>*/}
     </form>
   );
 }

@@ -10,7 +10,7 @@ const Navigation = () => (
     >
       Home
     </NavLink>
-
+    {/* 
     <NavLink
       //   exact
       to="/register"
@@ -24,7 +24,7 @@ const Navigation = () => (
       className={({ isActive }) => (isActive ? s.activeLink : s.link)}
     >
       Login
-    </NavLink>
+    </NavLink> */}
 
     <NavLink
       to="/contacts"

@@ -2,18 +2,61 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-axios.defaults.baseURL = "https://connections-api.herokuapp.com/";
+// axios.defaults.baseURL = "https://connections-api.herokuapp.com";
+// axios.defaults.baseURL = "https://connections-api.herokuapp.com";
 
-export const register = createAsyncThunk(
-  "auth/register",
-  async (credentials) => {
-    try {
-      const { data } = await axios.post("/users/signup", credentials);
-    } catch (error) {
-      console.log(error);
-    }
+const register = createAsyncThunk("auth/register", async (credentials) => {
+  // "https://connections-api.herokuapp.com/users/signup"
+  try {
+    const { data } = await axios.post(
+      "https://connections-api.herokuapp.com/users/signup",
+      credentials
+    );
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.log(error);
   }
-);
+
+  // try {
+  //   const { data } = await axios.get(
+  //     "https://api.themoviedb.org/3/trending/all/day?api_key=cdc3559cea174c9b75b98956c9a389b5"
+  //   );
+  //   console.log("gggggggg", data);
+  //   return data;
+  // } catch (error) {
+  //   console.log(error);
+  // }
+
+  // fetch("https://connections-api.herokuapp.com/users/signup", credentials)
+  //   .then((response) => {
+  //     response.json();
+  //   })
+  //   .then((data) => {
+  //     console.log(data);
+  //     return data;
+  //   });
+});
+
+const login = createAsyncThunk("auth/login", async (credentials) => {
+  try {
+    const { data } = await axios.post(
+      "https://connections-api.herokuapp.com/users/login",
+      credentials
+    );
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+const operations = {
+  register,
+  // logOut,
+  login,
+  // fetchCurrentUser,
+};
+export default operations;
 
 // export const addContact = (name, number) => async (dispatch) => {
 //   const contact = {
