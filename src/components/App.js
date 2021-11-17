@@ -40,11 +40,17 @@ function App() {
             <Route path="/" element={<HomePage />} />
           </Route>
           {/* <Route path="register" element={<RegisterForm />} /> */}
-          <Route path="/register" element={<PublicRoute restricted />}>
+          <Route
+            path="/register"
+            element={<PublicRoute redirectTo="/register" restricted />}
+          >
             <Route path="/register" element={<RegisterForm />} />
           </Route>
           {/* <Route path="login" element={<LoginForm />} /> */}
-          <Route path="/login" element={<PublicRoute restricted />}>
+          <Route
+            path="/login"
+            element={<PublicRoute redirectTo="/login" restricted />}
+          >
             <Route path="/login" element={<LoginForm />} />
           </Route>
 
