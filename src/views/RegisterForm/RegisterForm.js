@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 import { authOperations } from "../../redux/auth";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
+import { Input } from "@mui/material";
 // import { ThemeProvider, createTheme } from "@mui/system";
 // import { useFormControl } from "@mui/material/FormControl";
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -92,6 +93,11 @@ function RegisterForm() {
           required
         />
       </label>
+
+      {/* <label>
+        Password
+        <Input type="password" />
+      </label> */}
       {/* 
       <TextField
         id="outlined-multiline-flexible"

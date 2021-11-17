@@ -6,14 +6,14 @@ import homeImg from "../../images/home-img-1.jpg";
 import { authSelectors, authOperations } from "../../redux/auth";
 
 function UserMemu() {
-  const name = useSelector(authSelectors.getUserName);
-  console.log(name);
+  const email = useSelector(authSelectors.getUserEmail);
+  console.log(email);
   const dispatch = useDispatch();
   // const onLogOut = () => dispatch(authOperations.logOut());
   return (
     <div>
-      <img height="60" src={homeImg}></img>
-      <span>Welcom, {name}</span>
+      {/* <img height="60" src={homeImg}></img> */}
+      <span>Welcom, {email}</span>
       <button type="button" onClick={() => dispatch(authOperations.logOut())}>
         Log out
       </button>
