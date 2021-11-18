@@ -12,6 +12,7 @@ import { Input } from "@mui/material";
 // import { useFormControl } from "@mui/material/FormControl";
 ///////////////////////////////////////////////////////////////////////////////////////
 import { makeStyles } from "@mui/styles";
+import { InputLabel } from "@mui/material";
 
 console.log(authOperations.register);
 
@@ -69,7 +70,6 @@ function RegisterForm() {
           required
         />
       </label>
-
       <label className={s.lableContact}>
         Email
         <input
@@ -81,7 +81,6 @@ function RegisterForm() {
           required
         />
       </label>
-
       <label className={s.lableContact}>
         Password
         <input
@@ -93,13 +92,17 @@ function RegisterForm() {
           required
         />
       </label>
-
+      <InputLabel
+        variant="standard"
+        children={<Input type="password" />}
+        password
+      ></InputLabel>
       {/* <label>
         Password
         <Input type="password" />
       </label> */}
-      {/* 
-      <TextField
+
+      {/* <TextField
         id="outlined-multiline-flexible"
         label="Name"
         multiline
@@ -112,9 +115,9 @@ function RegisterForm() {
         value={name}
         ////////
         onChange={handleChange}
-      />
+      /> */}
 
-      <TextField
+      {/* <TextField
         id="outlined-multiline-flexible"
         label="Email"
         multiline
@@ -148,12 +151,10 @@ function RegisterForm() {
         // }}
         className={classes}
         onChange={handleChange}
-      /> */}
-
+      />  */}
       <button className={s.button} type="submit">
         Register
       </button>
-
       {/* <Button
         type="submit"
         onClick={handleSubmit}

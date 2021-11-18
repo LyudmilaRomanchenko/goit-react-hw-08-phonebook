@@ -12,7 +12,7 @@ import AppBar from "./AppBar";
 // import Contacts from "../views/Сontacts";
 // import RegisterForm from "../views/RegisterForm";
 // import LoginForm from "../views/LoginForm";
-import { authOperations } from "../redux/auth";
+import { authOperations, authSelectors } from "../redux/auth";
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
 
@@ -25,41 +25,59 @@ const Contacts = lazy(() => import("../views/Сontacts"));
 console.log(PrivateRoute);
 
 function App() {
+  const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingCurrent);
+  console.log(isFetchingCurrentUser);
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
   }, [dispatch]);
   return (
+    // !isFetchingCurrentUser && (
     <div>
-      <AppBar />
-      {/* <Suspense fallback={<Spinner />}> */}
-      <Suspense fallback={<h3>Loading</h3>}>
-        <Routes>
-          {/* <Route path="/" element={<HomePage />} /> */}
-          <Route path="/" element={<PublicRoute />}>
-            <Route path="/" element={<HomePage />} />
-          </Route>
-          {/* <Route path="register" element={<RegisterForm />} /> */}
-          <Route
-            path="/register"
-            element={<PublicRoute redirectTo="/register" restricted />}
-          >
-            <Route path="/register" element={<RegisterForm />} />
-          </Route>
-          {/* <Route path="login" element={<LoginForm />} /> */}
-          <Route
-            path="/login"
-            element={<PublicRoute redirectTo="/login" restricted />}
-          >
-            <Route path="/login" element={<LoginForm />} />
-          </Route>
+      {/* <AppBar /> */}
+      {isFetchingCurrentUser ? (
+        <h3>LOADING</h3>
+      ) : (
+        <>
+          <AppBar />
+          <Suspense fallback={<h3>Loading</h3>}>
+            {/* <Suspense fallback={<Spinner />}> */}
 
-          <Route path="/contacts" element={<PrivateRoute />}>
-            <Route path="/contacts" element={<Contacts />} />
-          </Route>
-        </Routes>
-      </Suspense>
+            {/* <AppBar /> */}
+            <Routes>
+              {/* <Route path="/" element={<HomePage />} /> */}
+              <Route path="/" element={<PublicRoute />}>
+                <Route path="/" element={<HomePage />} />
+              </Route>
+              {/* <Route path="register" element={<RegisterForm />} /> */}
+              <Route
+                path="/register"
+                element={<PublicRoute redirectTo="/contacts" restricted />}
+              >
+                <Route path="/register" element={<RegisterForm />} />
+              </Route>
+              {/* <Route path="login" element={<LoginForm />} /> */}
+              <Route
+                path="/login"
+                element={<PublicRoute redirectTo="/contacts" restricted />}
+              >
+                <Route path="/login" element={<LoginForm />} />
+              </Route>
+
+              <Route
+                path="/contacts"
+                // element={<PrivateRoute redirectTo="/contacts" />}
+                element={<PrivateRoute />}
+              >
+                <Route path="/contacts" element={<Contacts />} />
+              </Route>
+            </Routes>
+          </Suspense>
+        </>
+      )}
     </div>
+    // )
   );
 }
 

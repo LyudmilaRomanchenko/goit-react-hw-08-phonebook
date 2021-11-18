@@ -7,11 +7,19 @@ import { authSelectors } from "../../redux/auth";
 
 export default function Appbar() {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+  const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingCurrent);
+
   console.log(isLoggedIn);
+  console.log(!isFetchingCurrentUser);
   return (
     <header className={styles.header}>
       <Navigation />
-      {isLoggedIn ? <UserMemu /> : <AuthNav />}
+      {/* {!isLoggedIn && !isFetchingCurrentUser ? "" : <Navigation />}
+      {!isLoggedIn && isFetchingCurrentUser ? <AuthNav /> : <UserMemu />} */}
+      {/* {(isLoggedIn || isFetchingCurrentUser) && <UserMemu />} */}
+
+      {isLoggedIn || isFetchingCurrentUser ? <UserMemu /> : <AuthNav />}
+
       {/* <UserMemu />
       <AuthNav /> */}
     </header>

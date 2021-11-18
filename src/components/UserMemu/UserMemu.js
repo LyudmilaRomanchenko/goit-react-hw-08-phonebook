@@ -11,13 +11,13 @@ function UserMemu() {
   const dispatch = useDispatch();
   // const onLogOut = () => dispatch(authOperations.logOut());
   return (
-    <div>
+    <nav>
       {/* <img height="60" src={homeImg}></img> */}
       <span>Welcom, {email}</span>
       <button type="button" onClick={() => dispatch(authOperations.logOut())}>
         Log out
       </button>
-    </div>
+    </nav>
   );
 }
 
