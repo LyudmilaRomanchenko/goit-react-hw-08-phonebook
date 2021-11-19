@@ -2,6 +2,13 @@
   display: block;
   margin-bottom: 10px;
   font-weight: 500;
+
+  font-size: 18px;
+}
+
+.lableContact:hover,
+.lableContact:focus {
+  color: #009688;
 }
 
 .inputContact {
@@ -9,7 +16,7 @@
   border-radius: 5px;
   height: 30px;
   border: 2px solid #686b6b;
-
+  width: 300px;
   outline: none;
 }
 
