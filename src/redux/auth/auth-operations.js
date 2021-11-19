@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 // axios.defaults.baseURL = "https://connections-api.herokuapp.com";
 axios.defaults.baseURL = "https://connections-api.herokuapp.com";
@@ -16,7 +17,9 @@ const token = {
 const register = createAsyncThunk("auth/register", async (credentials) => {
   try {
     const { data } = await axios.post(
-      "https://connections-api.herokuapp.com/users/signup",
+      // "https://connections-api.herokuapp.com/users/signup",
+      "/users/signup",
+
       credentials
     );
     // console.log("hhhh", data);
@@ -24,28 +27,43 @@ const register = createAsyncThunk("auth/register", async (credentials) => {
     return data;
   } catch (error) {
     console.log(error);
+    return Promise.reject(new Error());
+    // toast.error(error.message);
   }
 });
+// async function fetchTrending() {
+//   const response = await fetch(urlTrending);
+//   if (response.ok) {
+//     return await response.json();
+//   }
+//   return Promise.reject(new Error("No selection of trending films!"));
+// }
 
 const logIn = createAsyncThunk("auth/login", async (credentials) => {
   try {
     const { data } = await axios.post(
-      "https://connections-api.herokuapp.com/users/login",
+      // "https://connections-api.herokuapp.com/users/login",
+      "/users/login",
+
       credentials
     );
     token.set(data.token);
     return data;
   } catch (error) {
     console.log(error);
+    return Promise.reject(new Error());
   }
 });
 
 const logOut = createAsyncThunk("auth/logout", async () => {
   try {
-    await axios.post("https://connections-api.herokuapp.com/users/logout");
+    // await axios.post("https://connections-api.herokuapp.com/users/logout");
+    await axios.post("/users/logout");
+
     token.unset();
   } catch (error) {
     console.log(error);
+    return Promise.reject(new Error());
   }
 });
 
@@ -63,11 +81,13 @@ const fetchCurrentUser = createAsyncThunk(
 
     try {
       const { data } = await axios.get(
-        "https://connections-api.herokuapp.com/users/current"
+        // "https://connections-api.herokuapp.com/users/current"
+        "/users/current"
       );
       return data;
     } catch (error) {
       console.log(error);
+      return Promise.reject(new Error());
     }
   }
 );

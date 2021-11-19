@@ -2,11 +2,16 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import s from "./LoginForm.module.css";
 import PropTypes from "prop-types";
-import { authOperations } from "../../redux/auth";
+import { authOperations, authSelectors } from "../../redux/auth";
+import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
+import styles from "../../styles/styles";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function LoginForm() {
+  const error = useSelector(authSelectors.getError);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
@@ -29,68 +34,59 @@ function LoginForm() {
     setEmail("");
     setPassword("");
   };
+  const notify = () =>
+    toast("Email or password is not correct!", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+
+  if (error) {
+    notify();
+  }
+
   return (
-    <form onSubmit={handleSubmit}>
-      <TextField
-        id="outlined-multiline-flexible"
-        label="Email"
-        multiline
-        maxRows={4}
-        color={"secondary"}
-        size="small"
-        ////////
-        type="email"
-        name="email"
-        value={email}
-        ////////
-        onChange={handleChange}
-      />
+    <Container maxWidth="sm">
+      <form onSubmit={handleSubmit}>
+        <TextField
+          // classes={classes.input}
+          label="Email"
+          color="primary"
+          size="small"
+          type="email"
+          name="email"
+          value={email}
+          onChange={handleChange}
+          required
+          sx={styles.input}
+        />
+        <TextField
+          // classes={classes.input}
+          label="Password"
+          color="primary"
+          size="small"
+          type="password"
+          name="password"
+          value={password}
+          onChange={handleChange}
+          required
+          sx={styles.input}
+        />
 
-      <TextField
-        id="outlined-multiline-flexible"
-        label="Password"
-        multiline
-        maxRows={4}
-        // color={"secondary"}
-        size="small"
-        ////////
-        type="password"
-        name="password"
-        value={password}
-        ////////
-        // sx={{
-        //   ":focus": {
-        //     color: "#009665",
-        //   },
-        // }}
-        // className={classes}
-        onChange={handleChange}
-      />
-
-      <Button
-        type="submit"
-        onClick={handleSubmit}
-        className={s.button}
-        variant="contained"
-        // color="secondary"
-        size="small"
-        // sx={{ bgcolor: "background.paper" }}
-        // sx={{ bgcolor: "#009688" }}
-        sx={{
-          // some styles
-          bgcolor: "#009688",
-          ":hover": {
-            bgcolor: "#009665",
-          },
-        }}
-      >
-        Log in
-      </Button>
-
-      {/* <button className={s.button} type="submit">
-        Log in
-      </button> */}
-    </form>
+        <Button
+          // classes={classes}
+          type="submit"
+          variant="contained"
+          sx={styles.buttonStyles}
+        >
+          Log in
+        </Button>
+      </form>
+    </Container>
   );
 }
 

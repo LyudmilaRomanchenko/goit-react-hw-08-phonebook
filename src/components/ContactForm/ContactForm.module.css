@@ -6,6 +6,16 @@
 
 .inputContact {
   display: block;
+  border-radius: 5px;
+  height: 30px;
+  border: 2px solid #686b6b;
+
+  outline: none;
+}
+
+.inputContact:hover,
+.inputContact:focus {
+  border: 2px solid #009688;
 }
 
 .button {

@@ -11,7 +11,7 @@ function Navigation() {
 
   return (
     // !isFetchingCurrentUser && (
-    <nav className={s.nav}>
+    <nav>
       <NavLink
         to="/"
         className={({ isActive }) => (isActive ? s.activeLink : s.link)}

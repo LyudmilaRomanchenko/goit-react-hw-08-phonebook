@@ -15,6 +15,7 @@ import AppBar from "./AppBar";
 import { authOperations, authSelectors } from "../redux/auth";
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
+import { ToastContainer } from "react-toastify";
 
 // Добавляет ленивую загрузку
 const HomePage = lazy(() => import("../views/HomePage"));
@@ -74,6 +75,17 @@ function App() {
               </Route>
             </Routes>
           </Suspense>
+          <ToastContainer
+            position="top-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
         </>
       )}
     </div>

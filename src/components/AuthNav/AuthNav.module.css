@@ -19,7 +19,11 @@
   text-decoration: none;
   font-weight: 700;
   color: rgb(255, 255, 255);
-  background-color: rgb(124, 196, 186);
+  background-color: #009688;
+}
+
+.activeLink:hover {
+  background-color: #036b69;
 }
 
 .nav {

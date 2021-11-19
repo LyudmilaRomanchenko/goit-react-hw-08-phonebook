@@ -4,6 +4,9 @@ import styles from "./AppBar.module.css";
 import AuthNav from "../AuthNav";
 import UserMemu from "../UserMemu";
 import { authSelectors } from "../../redux/auth";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
 
 export default function Appbar() {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
@@ -12,16 +15,27 @@ export default function Appbar() {
   console.log(isLoggedIn);
   console.log(!isFetchingCurrentUser);
   return (
-    <header className={styles.header}>
-      <Navigation />
-      {/* {!isLoggedIn && !isFetchingCurrentUser ? "" : <Navigation />}
-      {!isLoggedIn && isFetchingCurrentUser ? <AuthNav /> : <UserMemu />} */}
-      {/* {(isLoggedIn || isFetchingCurrentUser) && <UserMemu />} */}
-
-      {isLoggedIn || isFetchingCurrentUser ? <UserMemu /> : <AuthNav />}
-
-      {/* <UserMemu />
-      <AuthNav /> */}
-    </header>
+    <AppBar position="static" sx={{ bgcolor: "#ebeded" }}>
+      <Toolbar>
+        <Typography variant="h8" component="div" sx={{ display: "flex" }}>
+          <Navigation />
+          {isLoggedIn || isFetchingCurrentUser ? <UserMemu /> : <AuthNav />}
+        </Typography>
+      </Toolbar>
+    </AppBar>
   );
 }
+
+/////////////////////////
+// <header className={styles.header}>
+//   <Navigation />
+
+//   {isLoggedIn || isFetchingCurrentUser ? <UserMemu /> : <AuthNav />}
+// </header>
+// {
+//   /* {!isLoggedIn && !isFetchingCurrentUser ? "" : <Navigation />}
+//       {!isLoggedIn && isFetchingCurrentUser ? <AuthNav /> : <UserMemu />} */
+// }
+// {
+//   /* {(isLoggedIn || isFetchingCurrentUser) && <UserMemu />} */
+// }

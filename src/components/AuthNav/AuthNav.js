@@ -7,7 +7,7 @@ function AuthNav() {
   // const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingCurrent);
   return (
     // !isFetchingCurrentUser && (
-    <nav className={s.nav}>
+    <nav>
       <NavLink
         //   exact
         to="/register"
