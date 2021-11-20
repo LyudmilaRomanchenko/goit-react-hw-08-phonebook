@@ -28,10 +28,21 @@ const buttonLogOut = {
   },
 };
 
+const buttonDelete = {
+  bgcolor: "#009688",
+  ":hover": {
+    bgcolor: "#036b69",
+  },
+  ":focus": {
+    bgcolor: "#036b69",
+  },
+};
+
 const styles = {
   input,
   buttonStyles,
   buttonLogOut,
+  buttonDelete,
 };
 
 export default styles;

@@ -2,28 +2,22 @@ import s from "./ContactElement.module.css";
 import PropTypes from "prop-types";
 import Button from "@mui/material/Button";
 import DeleteIcon from "@mui/icons-material/Delete";
+import styles from "../../styles/styles";
 
 function ContactElement({ id, name, number, deleteContact }) {
   return (
     <p>
-      <span>{name}:</span>
+      <span className={s.name}>{name}:</span>
       <span className={s.number}>{number}</span>
-      {/* <button
-        className={s.button}
-        type="button"
-        onClick={() => deleteContact(id)}
-      >
-        Delete
-      </button> */}
 
       <Button
-        onClick={() => deleteContact(id)}
         startIcon={<DeleteIcon />}
         type="button"
         // className={s.button}
         variant="contained"
         size="small"
-        sx={{ bgcolor: "#009688" }}
+        sx={styles.buttonDelete}
+        onClick={() => deleteContact(id)}
       >
         Delete
       </Button>
@@ -41,3 +35,14 @@ ContactElement.prototype = {
 PropTypes.checkPropTypes(ContactElement);
 
 export default ContactElement;
+
+//////////////
+// {
+//   /* <button
+//         className={s.button}
+//         type="button"
+//         onClick={() => deleteContact(id)}
+//       >
+//         Delete
+//       </button> */
+// }

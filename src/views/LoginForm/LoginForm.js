@@ -3,15 +3,17 @@ import { useSelector, useDispatch } from "react-redux";
 import s from "./LoginForm.module.css";
 import PropTypes from "prop-types";
 import { authOperations, authSelectors } from "../../redux/auth";
-import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import styles from "../../styles/styles";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Container from "../../components/Container";
 
 function LoginForm() {
   const error = useSelector(authSelectors.getError);
+  console.log("error", error);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
@@ -30,10 +32,19 @@ function LoginForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    // if (error) {
+    //   return notify();
+    // }
+
     dispatch(authOperations.logIn({ email, password }));
-    setEmail("");
-    setPassword("");
+    // setEmail("");
+    // setPassword("");
+
+    // if (error) {
+    //   return notify();
+    // }
   };
+
   const notify = () =>
     toast("Email or password is not correct!", {
       position: "top-right",
@@ -45,13 +56,9 @@ function LoginForm() {
       progress: undefined,
     });
 
-  if (error) {
-    notify();
-  }
-
   return (
-    <Container maxWidth="sm">
-      <form onSubmit={handleSubmit}>
+    <Container>
+      <form className={s.form} onSubmit={handleSubmit}>
         <TextField
           // classes={classes.input}
           label="Email"

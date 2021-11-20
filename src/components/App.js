@@ -9,6 +9,7 @@ import { Routes, Route, Link } from "react-router-dom";
 // import Filter from "./Filter";
 // import s from "./Phonebook.module.css";
 import AppBar from "./AppBar";
+import Spinner from "./Spinner";
 // import Contacts from "../views/Сontacts";
 // import RegisterForm from "../views/RegisterForm";
 // import LoginForm from "../views/LoginForm";
@@ -36,29 +37,23 @@ function App() {
   return (
     // !isFetchingCurrentUser && (
     <div>
-      {/* <AppBar /> */}
       {isFetchingCurrentUser ? (
-        <h3>LOADING</h3>
+        <Spinner />
       ) : (
         <>
-          <AppBar />
-          <Suspense fallback={<h3>Loading</h3>}>
-            {/* <Suspense fallback={<Spinner />}> */}
-
-            {/* <AppBar /> */}
+          {/* <AppBar /> */}
+          <Suspense fallback={<Spinner />}>
+            <AppBar />
             <Routes>
-              {/* <Route path="/" element={<HomePage />} /> */}
               <Route path="/" element={<PublicRoute />}>
                 <Route path="/" element={<HomePage />} />
               </Route>
-              {/* <Route path="register" element={<RegisterForm />} /> */}
               <Route
                 path="/register"
                 element={<PublicRoute redirectTo="/contacts" restricted />}
               >
                 <Route path="/register" element={<RegisterForm />} />
               </Route>
-              {/* <Route path="login" element={<LoginForm />} /> */}
               <Route
                 path="/login"
                 element={<PublicRoute redirectTo="/contacts" restricted />}
@@ -66,11 +61,7 @@ function App() {
                 <Route path="/login" element={<LoginForm />} />
               </Route>
 
-              <Route
-                path="/contacts"
-                // element={<PrivateRoute redirectTo="/contacts" />}
-                element={<PrivateRoute />}
-              >
+              <Route path="/contacts" element={<PrivateRoute />}>
                 <Route path="/contacts" element={<Contacts />} />
               </Route>
             </Routes>

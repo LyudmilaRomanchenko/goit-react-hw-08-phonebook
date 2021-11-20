@@ -15,7 +15,7 @@ export default function Appbar() {
   console.log(isLoggedIn);
   console.log(!isFetchingCurrentUser);
   return (
-    <AppBar position="static" sx={{ bgcolor: "#ebeded" }}>
+    <AppBar position="static" sx={{ bgcolor: "#ebeded", paddingLeft: "100px" }}>
       <Toolbar>
         <Typography variant="h8" component="div" sx={{ display: "flex" }}>
           <Navigation />

@@ -2,7 +2,20 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-// axios.defaults.baseURL = "https://connections-api.herokuapp.com";
+const notify = (message) =>
+  toast(message, {
+    position: "top-right",
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
+
+// import { useSelector, useDispatch } from "react-redux";
+// import authSelectors from "./auth-selector";
+
 axios.defaults.baseURL = "https://connections-api.herokuapp.com";
 
 const token = {
@@ -27,6 +40,7 @@ const register = createAsyncThunk("auth/register", async (credentials) => {
     return data;
   } catch (error) {
     console.log(error);
+    notify("Maybe this email is taken!");
     return Promise.reject(new Error());
     // toast.error(error.message);
   }
@@ -51,6 +65,7 @@ const logIn = createAsyncThunk("auth/login", async (credentials) => {
     return data;
   } catch (error) {
     console.log(error);
+    notify("Email or password is not correct!");
     return Promise.reject(new Error());
   }
 });
@@ -118,6 +133,7 @@ const operations = {
   logOut,
   logIn,
   fetchCurrentUser,
+  notify,
 };
 export default operations;
 

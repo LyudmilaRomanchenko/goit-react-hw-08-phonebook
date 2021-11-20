@@ -5,16 +5,16 @@ import PropTypes from "prop-types";
 import { authOperations, authSelectors } from "../../redux/auth";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import Container from "@mui/material/Container";
 import styles from "../../styles/styles";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Container from "../../components/Container";
 
 console.log(styles);
 
 function RegisterForm() {
   const error = useSelector(authSelectors.getError);
-  console.log("error", error);
+  // console.log("error", error);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -38,11 +38,15 @@ function RegisterForm() {
     e.preventDefault();
 
     dispatch(authOperations.register({ name, email, password }));
-    setName("");
-    setEmail("");
-    setPassword("");
+    // dispatch(authOperations.notify());
+
+    // setName("");
+    // setEmail("");
+    // setPassword("");
+
     // if (error) {
-    //   notify();
+    //   console.log("error", error);
+    //   return a();
     // }
   };
 
@@ -57,15 +61,27 @@ function RegisterForm() {
       progress: undefined,
     });
 
-  if (error) {
-    notify();
-  }
+  // async function a() {
+  //   if (error) {
+  //     console.log("error", error);
+  //     const b = await notify();
+  //     return b;
+  //   } else {
+  //     return;
+  //   }
+  // }
+
+  // console.log("error", a());
+
+  // if (error) {
+  //   notify();
+  // }
 
   return (
     <>
       {/* {error && notify()} */}
-      <Container maxWidth="sm">
-        <form onSubmit={handleSubmit}>
+      <Container>
+        <form className={s.form} onSubmit={handleSubmit}>
           <TextField
             // className={classes.input}
             label="Name"
