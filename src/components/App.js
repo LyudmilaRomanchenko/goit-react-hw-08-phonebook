@@ -41,9 +41,9 @@ function App() {
         <Spinner />
       ) : (
         <>
-          {/* <AppBar /> */}
+          <AppBar />
           <Suspense fallback={<Spinner />}>
-            <AppBar />
+            {/* <AppBar /> */}
             <Routes>
               <Route path="/" element={<PublicRoute />}>
                 <Route path="/" element={<HomePage />} />

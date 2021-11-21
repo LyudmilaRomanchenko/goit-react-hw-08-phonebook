@@ -6,13 +6,13 @@ import { authOperations, authSelectors } from "../../redux/auth";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import styles from "../../styles/styles";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Container from "../../components/Container";
 
 function LoginForm() {
-  const error = useSelector(authSelectors.getError);
-  console.log("error", error);
+  // const error = useSelector(authSelectors.getError);
+  // console.log("error", error);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -32,29 +32,10 @@ function LoginForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // if (error) {
-    //   return notify();
-    // }
-
     dispatch(authOperations.logIn({ email, password }));
-    // setEmail("");
-    // setPassword("");
-
-    // if (error) {
-    //   return notify();
-    // }
+    setEmail("");
+    setPassword("");
   };
-
-  const notify = () =>
-    toast("Email or password is not correct!", {
-      position: "top-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
 
   return (
     <Container>

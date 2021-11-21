@@ -6,14 +6,14 @@ import { authOperations, authSelectors } from "../../redux/auth";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import styles from "../../styles/styles";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Container from "../../components/Container";
 
 console.log(styles);
 
 function RegisterForm() {
-  const error = useSelector(authSelectors.getError);
+  // const error = useSelector(authSelectors.getError);
   // console.log("error", error);
 
   const [name, setName] = useState("");
@@ -38,98 +38,62 @@ function RegisterForm() {
     e.preventDefault();
 
     dispatch(authOperations.register({ name, email, password }));
-    // dispatch(authOperations.notify());
 
-    // setName("");
-    // setEmail("");
-    // setPassword("");
-
-    // if (error) {
-    //   console.log("error", error);
-    //   return a();
-    // }
+    setName("");
+    setEmail("");
+    setPassword("");
   };
 
-  const notify = () =>
-    toast("Maybe this email is taken!", {
-      position: "top-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-
-  // async function a() {
-  //   if (error) {
-  //     console.log("error", error);
-  //     const b = await notify();
-  //     return b;
-  //   } else {
-  //     return;
-  //   }
-  // }
-
-  // console.log("error", a());
-
-  // if (error) {
-  //   notify();
-  // }
-
   return (
-    <>
-      {/* {error && notify()} */}
-      <Container>
-        <form className={s.form} onSubmit={handleSubmit}>
-          <TextField
-            // className={classes.input}
-            label="Name"
-            color="primary"
-            size="small"
-            type="text"
-            name="name"
-            value={name}
-            onChange={handleChange}
-            required
-            sx={styles.input}
-          />
-          <TextField
-            // classes={classes.input}
-            label="Email"
-            color="primary"
-            size="small"
-            type="email"
-            name="email"
-            value={email}
-            onChange={handleChange}
-            required
-            sx={styles.input}
-          />
-          <TextField
-            // classes={classes.input}
-            label="Password"
-            color="primary"
-            size="small"
-            type="password"
-            name="password"
-            value={password}
-            onChange={handleChange}
-            required
-            sx={styles.input}
-          />
+    <Container>
+      <form className={s.form} onSubmit={handleSubmit}>
+        <TextField
+          // className={classes.input}
+          label="Name"
+          color="primary"
+          size="small"
+          type="text"
+          name="name"
+          value={name}
+          onChange={handleChange}
+          required
+          sx={styles.input}
+        />
+        <TextField
+          // classes={classes.input}
+          label="Email"
+          color="primary"
+          size="small"
+          type="email"
+          name="email"
+          value={email}
+          onChange={handleChange}
+          required
+          sx={styles.input}
+        />
+        <TextField
+          // classes={classes.input}
+          label="Password"
+          color="primary"
+          size="small"
+          type="password"
+          name="password"
+          value={password}
+          onChange={handleChange}
+          required
+          sx={styles.input}
+        />
 
-          <Button
-            // classes={classes}
-            type="submit"
-            variant="contained"
-            sx={styles.buttonStyles}
-          >
-            Register
-          </Button>
-        </form>
-      </Container>
-    </>
+        <Button
+          // classes={classes}
+          type="submit"
+          variant="contained"
+          sx={styles.buttonStyles}
+        >
+          Register
+        </Button>
+      </form>
+    </Container>
   );
 }
 

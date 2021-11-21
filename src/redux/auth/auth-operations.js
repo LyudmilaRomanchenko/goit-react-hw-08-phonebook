@@ -133,7 +133,6 @@ const operations = {
   logOut,
   logIn,
   fetchCurrentUser,
-  notify,
 };
 export default operations;
 
