@@ -6,7 +6,6 @@ import s from "./Contacts.module.css";
 
 function Contacts() {
   return (
-    // <div className={s.container}>
     <Container>
       <div className={s.phonebookContainer}>
         <h1>Phonebook</h1>
@@ -18,8 +17,6 @@ function Contacts() {
         <ContactList />
       </div>
     </Container>
-
-    // </div>
   );
 }
 

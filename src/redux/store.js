@@ -54,21 +54,3 @@ export const store = configureStore({
 console.log(store.getState());
 
 export const persistor = persistStore(store);
-
-// export default store;
-
-// Без toolkit
-// import { createStore, combineReducers } from "redux";
-// import { composeWithDevTools } from "redux-devtools-extension";
-// import contacts from "./reducer";
-
-// const rootReducer = combineReducers({
-//   contacts: contacts,
-// });
-
-// const store = createStore(rootReducer, composeWithDevTools());
-
-// export default store;
-
-// console.log(rootReducer);
-// console.log(store);

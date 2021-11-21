@@ -1,21 +1,16 @@
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import s from "./RegisterForm.module.css";
-import PropTypes from "prop-types";
-import { authOperations, authSelectors } from "../../redux/auth";
+import { authOperations } from "../../redux/auth";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import styles from "../../styles/styles";
-// import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Container from "../../components/Container";
 
 console.log(styles);
 
 function RegisterForm() {
-  // const error = useSelector(authSelectors.getError);
-  // console.log("error", error);
-
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -98,70 +93,3 @@ function RegisterForm() {
 }
 
 export default RegisterForm;
-
-// RegisterForm.prototype = {
-//   contacts: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       id: PropTypes.string.isRequired,
-//       name: PropTypes.string.isRequired,
-//       number: PropTypes.number.isRequired,
-//     }).isRequired
-//   ),
-//   addContact: PropTypes.func.isRequired,
-// };
-
-///////////////////////////////////////////////////////////////////////////////////////
-// import { makeStyles } from "@mui/styles";
-// const useStyles = makeStyles({
-//   // ":focus": {
-//   //   borderColor: "#009665",
-//   // },
-//   input: {
-//     color: "red",
-//     margin: "30px 0",
-//     display: "block",
-//   },
-// });
-////////////////////////////////////////////////
-//  <label className={s.lableContact}>
-//   Name
-//   <input
-//     className={s.inputContact}
-//     type="text"
-//     name="name"
-//     value={name}
-//     onChange={handleChange}
-//     required
-//   />
-// </label>
-// <label className={s.lableContact}>
-//   Email
-//   <input
-//     className={s.inputContact}
-//     type="email"
-//     name="email"
-//     value={email}
-//     onChange={handleChange}
-//     required
-//   />
-// </label>
-// <label className={s.lableContact}>
-//   Password
-//   <input
-//     className={s.inputContact}
-//     type="password"
-//     name="password"
-//     value={password}
-//     onChange={handleChange}
-//     required
-//   />
-// </label>
-// {/* <InputLabel
-//   variant="standard"
-//   children={<Input type="password" />}
-//   password
-// ></InputLabel>
-
-// <button className={s.button} type="submit">
-//   Register
-// </button>;

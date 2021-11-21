@@ -4,12 +4,9 @@ import s from "./AuthNav.module.css";
 import { authSelectors } from "../../redux/auth";
 
 function AuthNav() {
-  // const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingCurrent);
   return (
-    // !isFetchingCurrentUser && (
     <nav>
       <NavLink
-        //   exact
         to="/register"
         className={({ isActive }) => (isActive ? s.activeLink : s.link)}
       >
@@ -23,7 +20,6 @@ function AuthNav() {
         Login
       </NavLink>
     </nav>
-    // )
   );
 }
 

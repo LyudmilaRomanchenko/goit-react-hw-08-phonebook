@@ -2,22 +2,9 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import s from "./ContactForm.module.css";
 import PropTypes from "prop-types";
-// import actions from "../../redux/contacts/contacts-actions";
-// import { getContacts } from "../../redux/contacts/contacts-selectors";
 import { contactsOperations, contactsSelectors } from "../../redux/contacts";
-// Библиотека стилей
 import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-// import Button from "./Button";
-import { ThemeProvider, createTheme } from "@mui/system";
-
-const theme = createTheme({
-  palette: {
-    background: {
-      paper: "#009688",
-    },
-  },
-});
+import styles from "../../styles/styles";
 
 function ContactForm() {
   const contacts = useSelector(contactsSelectors.getContacts);
@@ -84,61 +71,16 @@ function ContactForm() {
         />
       </label>
 
-      {/* <TextField
-        id="outlined-multiline-flexible"
-        label="Name"
-        multiline
-        maxRows={4}
-        color={"secondary"}
-        size="small"
-        ////////
-        type="text"
-        name="name"
-        value={name}
-        pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-        title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
-        required
-        ////////
-        onChange={handleChange}
-      />
-
-      <TextField
-        id="outlined-multiline-flexible"
-        label="Number"
-        multiline
-        maxRows={4}
-        color={"secondary"}
-        size="small"
-        ////////
-        type="tel"
-        name="number"
-        value={number}
-        pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-        title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
-        required
-        ////////
-        onChange={handleChange}
-      /> */}
-
-      {/* <button className={s.button} type="submit">
-        Add contact
-      </button> */}
-
-      {/* <Button /> */}
-      {/* <ThemeProvider theme={theme}> */}
       <Button
         onClick={handleSubmit}
         type="submit"
-        className={s.button}
+        // className={s.button}
         variant="contained"
-        // color="secondary"
         size="small"
-        // sx={{ bgcolor: "background.paper" }}
-        sx={{ bgcolor: "#009688" }}
+        sx={styles.buttonStyles}
       >
         Add contact
       </Button>
-      {/* </ThemeProvider> */}
     </form>
   );
 }
@@ -156,99 +98,14 @@ ContactForm.prototype = {
   addContact: PropTypes.func.isRequired,
 };
 
-// Без toolkit
+// import TextField from "@mui/material/TextField";
+// import Button from "./Button";
+// import { ThemeProvider, createTheme } from "@mui/system";
 
-// import { useState } from "react";
-// import { connect} from "react-redux";
-// import s from "./ContactForm.module.css";
-// import PropTypes from "prop-types";
-// import actions from "../../redux/actions";
-
-// function ContactForm({ addContact, contacts }) {
-//   const [name, setName] = useState("");
-//   const [number, setNumber] = useState("");
-
-//   const handleChange = (e) => {
-
-//     if (e.currentTarget.name === "name") {
-//       setName(e.currentTarget.value);
-//     }
-
-//     if (e.currentTarget.name === "number") {
-//       setNumber(e.currentTarget.value);
-//     }
-//   };
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-
-//     const isContactsIncludes = contacts.find(
-//       (contact) => contact.name === name
-//     );
-
-//     if (isContactsIncludes) {
-//       return alert(`${name} is alredy in contacts`);
-//     } else {
-//       addContact(name, number);
-//       setName("");
-//       setNumber("");
-//     }
-//   };
-
-//   return (
-//     <form onSubmit={handleSubmit}>
-//       <label className={s.lableContact}>
-//         Name
-//         <input
-//           className={s.inputContact}
-//           type="text"
-//           name="name"
-//           value={name}
-//           onChange={handleChange}
-//           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-//           title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
-//           required
-//         />
-//       </label>
-
-//       <label className={s.lableContact}>
-//         Number
-//         <input
-//           className={s.inputContact}
-//           type="tel"
-//           name="number"
-//           value={number}
-//           onChange={handleChange}
-//           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-//           title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
-//           required
-//         />
-//       </label>
-
-//       <button className={s.button} type="submit">
-//         Add contact
-//       </button>
-//     </form>
-//   );
-// }
-
-// const mapStateToProps = (state) => ({
-//   contacts: state.contacts.items,
+// const theme = createTheme({
+//   palette: {
+//     background: {
+//       paper: "#009688",
+//     },
+//   },
 // });
-
-// const mapDispatchToProps = (dispatch) => ({
-//   addContact: (name, number) => dispatch(actions.addContact(name, number)),
-// });
-
-// export default connect(mapStateToProps, mapDispatchToProps)(ContactForm);
-
-// ContactForm.prototype = {
-//   contacts: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       id: PropTypes.string.isRequired,
-//       name: PropTypes.string.isRequired,
-//       number: PropTypes.number.isRequired,
-//     }).isRequired
-//   ),
-//   addContact: PropTypes.func.isRequired,
-// };

@@ -19,26 +19,9 @@ export default function Appbar() {
       <Toolbar>
         <Typography variant="h8" component="div" sx={{ display: "flex" }}>
           <Navigation />
-          {/* {isLoggedIn && <UserMemu />}
-          {!isLoggedIn && isFetchingCurrentUser && <h3>ffffffffff</h3>}
-          {!isLoggedIn && !isFetchingCurrentUser && <AuthNav />} */}
           {isLoggedIn || isFetchingCurrentUser ? <UserMemu /> : <AuthNav />}
         </Typography>
       </Toolbar>
     </AppBar>
   );
 }
-
-/////////////////////////
-// <header className={styles.header}>
-//   <Navigation />
-
-//   {isLoggedIn || isFetchingCurrentUser ? <UserMemu /> : <AuthNav />}
-// </header>
-// {
-//   /* {!isLoggedIn && !isFetchingCurrentUser ? "" : <Navigation />}
-//       {!isLoggedIn && isFetchingCurrentUser ? <AuthNav /> : <UserMemu />} */
-// }
-// {
-//   /* {(isLoggedIn || isFetchingCurrentUser) && <UserMemu />} */
-// }

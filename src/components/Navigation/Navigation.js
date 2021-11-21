@@ -33,34 +33,3 @@ function Navigation() {
 }
 
 export default Navigation;
-
-// {
-//   !isFetchingCurrentUser && (
-//     <NavLink
-//       to="/"
-//       className={({ isActive }) => (isActive ? s.activeLink : s.link)}
-//     >
-//       Home
-//     </NavLink>
-//   );
-// }
-
-// className={({ isActive }) => isActive ? "red" : "blue"}
-//////////////////
-{
-  /* 
-    <NavLink
-      //   exact
-      to="/register"
-      className={({ isActive }) => (isActive ? s.activeLink : s.link)}
-    >
-      Register
-    </NavLink>
-
-    <NavLink
-      to="/login"
-      className={({ isActive }) => (isActive ? s.activeLink : s.link)}
-    >
-      Login
-    </NavLink> */
-}

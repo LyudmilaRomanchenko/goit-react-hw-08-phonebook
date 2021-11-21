@@ -13,9 +13,6 @@ const notify = (message) =>
     progress: undefined,
   });
 
-// import { useSelector, useDispatch } from "react-redux";
-// import authSelectors from "./auth-selector";
-
 axios.defaults.baseURL = "https://connections-api.herokuapp.com";
 
 const token = {
@@ -30,37 +27,22 @@ const token = {
 const register = createAsyncThunk("auth/register", async (credentials) => {
   try {
     const { data } = await axios.post(
-      // "https://connections-api.herokuapp.com/users/signup",
       "/users/signup",
 
       credentials
     );
-    // console.log("hhhh", data);
     token.set(data.token);
     return data;
   } catch (error) {
     console.log(error);
     notify("Maybe this email is taken!");
     return Promise.reject(new Error());
-    // toast.error(error.message);
   }
 });
-// async function fetchTrending() {
-//   const response = await fetch(urlTrending);
-//   if (response.ok) {
-//     return await response.json();
-//   }
-//   return Promise.reject(new Error("No selection of trending films!"));
-// }
 
 const logIn = createAsyncThunk("auth/login", async (credentials) => {
   try {
-    const { data } = await axios.post(
-      // "https://connections-api.herokuapp.com/users/login",
-      "/users/login",
-
-      credentials
-    );
+    const { data } = await axios.post("/users/login", credentials);
     token.set(data.token);
     return data;
   } catch (error) {
@@ -72,7 +54,6 @@ const logIn = createAsyncThunk("auth/login", async (credentials) => {
 
 const logOut = createAsyncThunk("auth/logout", async () => {
   try {
-    // await axios.post("https://connections-api.herokuapp.com/users/logout");
     await axios.post("/users/logout");
 
     token.unset();
@@ -95,10 +76,7 @@ const fetchCurrentUser = createAsyncThunk(
     token.set(persistedToken);
 
     try {
-      const { data } = await axios.get(
-        // "https://connections-api.herokuapp.com/users/current"
-        "/users/current"
-      );
+      const { data } = await axios.get("/users/current");
       return data;
     } catch (error) {
       console.log(error);
@@ -107,27 +85,6 @@ const fetchCurrentUser = createAsyncThunk(
   }
 );
 
-// const fetchCurrentUser = createAsyncThunk(
-//   "auth/refresh",
-//   async (_, thunkAPI) => {
-//     const state = thunkAPI.getState();
-//     const persistedToken = state.auth.token;
-
-//     if (persistedToken === null) {
-//       console.log("Токена нет, уходим из fetchCurrentUser");
-//       return thunkAPI.rejectWithValue();
-//     }
-
-//     token.set(persistedToken);
-//     try {
-//       const { data } = await axios.get("/users/current");
-//       return data;
-//     } catch (error) {
-//       // TODO: Добавить обработку ошибки error.message
-//     }
-//   }
-// );
-
 const operations = {
   register,
   logOut,
@@ -135,37 +92,3 @@ const operations = {
   fetchCurrentUser,
 };
 export default operations;
-
-// export const addContact = (name, number) => async (dispatch) => {
-//   const contact = {
-//     name,
-//     number,
-//   };
-
-//   dispatch(addContactsRequest());
-
-//   try {
-//     const { data } = await axios.post("/contacts", contact);
-//     dispatch(addContactsSuccsess(data));
-//   } catch (error) {
-//     dispatch(addContactsError(error));
-//   }
-
-//   //   axios
-//   //     .post("/contacts", contact)
-//   //     .then(({ data }) => dispatch(addContactsSuccsess(data)))
-//   //     .catch((error) => dispatch(addContactsError(error)));
-// };
-
-// export const deleteContact = (contactId) => async (dispatch) => {
-//   dispatch(deleteContactsRequest());
-
-//   try {
-//     axios.delete(`/contacts/${contactId}`);
-//     dispatch(deleteContactsSuccsess(contactId));
-//   } catch (error) {
-//     dispatch(deleteContactsError(error));
-//   }
-// };
-
-// export default { addContact, fetchContacts, deleteContact };

@@ -1,4 +1,5 @@
 /* eslint-disable no-lone-blocks */
+import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import { Navigate, Outlet } from "react-router-dom";
 import { authSelectors } from "../redux/auth";
@@ -18,7 +19,9 @@ function PublicRoute({ restricted = false, redirectTo = "/" }) {
 
 export default PublicRoute;
 
-///////////////// Props /////////////////////////////////////////
-{
-  /* <h3>jjjjjjjj</h3>; */
-}
+PublicRoute.prototype = {
+  restricted: PropTypes.bool.isRequired,
+  redirectTo: PropTypes.string.isRequired,
+};
+
+PropTypes.checkPropTypes(PublicRoute);

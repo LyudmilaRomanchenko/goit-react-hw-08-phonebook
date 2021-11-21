@@ -35,14 +35,3 @@ ContactElement.prototype = {
 PropTypes.checkPropTypes(ContactElement);
 
 export default ContactElement;
-
-//////////////
-// {
-//   /* <button
-//         className={s.button}
-//         type="button"
-//         onClick={() => deleteContact(id)}
-//       >
-//         Delete
-//       </button> */
-// }
