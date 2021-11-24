@@ -51,7 +51,10 @@ function App() {
                 <Route path="/login" element={<LoginForm />} />
               </Route>
 
-              <Route path="/contacts" element={<PrivateRoute />}>
+              <Route
+                path="/contacts"
+                element={<PrivateRoute redirectTo="/contacts" />}
+              >
                 <Route path="/contacts" element={<Contacts />} />
               </Route>
             </Routes>
