@@ -14,7 +14,14 @@ function PrivateRoute() {
 
 export default PrivateRoute;
 
-// [redirect]
-//     from = "/"
-//     to = "index.html"
-//     status = 200
+// /              https:/ / lyudmilaromanchenko -
+//   goit -
+//   react -
+//   hw -
+//   08 -
+//   phonebook.netlify.app / /contacts      https:/ / lyudmilaromanchenko -
+//   goit -
+//   react -
+//   hw -
+//   08 -
+//   phonebook.netlify.app / contacts;
